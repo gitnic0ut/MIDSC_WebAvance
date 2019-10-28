@@ -1,0 +1,181 @@
+package com.tp.projet;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * FirstController
+ */
+@Controller
+public class FirstController {
+
+    /**
+     * Methodes et attributs de la 1ère version du Projet
+     */
+
+    /* Lorsqu'on est connecté */
+
+    @Inject
+    public UtilisateurRepository utilisateurRep;
+
+    @Inject
+    public ProjetRepository projetRep;
+
+    @Inject
+    public TacheRepository tacheRep;
+
+    @RequestMapping("/home")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/connection")
+    public String connexion(Model m) {
+        return "connexion";
+    }
+
+    @RequestMapping("/registration")
+    public String inscription(Model m) {
+        m.addAttribute("reg", new Utilisateur());
+        return "inscription";
+    }
+
+    @RequestMapping("/addutilisateur")
+    public String addutilisateur(Utilisateur u) {
+        utilisateurRep.save(u);
+        return "redirect:/member";
+    }
+
+    /** Une fois connecté */
+
+    /* page de l'espace membre */
+    @RequestMapping("/member")
+    public String membre(Model m) {
+        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("project", projetRep.findAll());
+        return "membre";
+    }
+
+    /* page de création d'un projet */
+
+    @RequestMapping("/projetCreate")
+    public String projetCreation(Model m) {
+        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("pro", new Projet());
+
+        return "projetCreation";
+    }
+
+    @RequestMapping("/addprojet")
+    public String addprojet(Projet p) {
+        projetRep.save(p);
+        return "redirect:/member";
+    }
+
+
+    /* page de gestion d'un projet */
+
+    @RequestMapping("/projectManagement/{projectId}")
+    public String projetGestion(@PathVariable("projectId") Long projectId, Model m) {
+        Projet p;
+        p = projetRep.findById(projectId).get();
+        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("project", projetRep.findAll());
+        m.addAttribute("task", tacheRep.findAll());
+        m.addAttribute("pro", p);
+        return "projetGestion";
+    }
+
+    @PostMapping(value = "/updateprojet")
+    public String updateprojet(Projet projetObj) {
+        projetRep.save(projetObj);
+        return "redirect:/member";
+    }
+
+    
+    /* page de création d'une tache */
+
+    @RequestMapping("/taskCreate/{projectId}")
+    public String tacheCreation(@PathVariable("projectId") Long projectId, Model m) {
+
+        Projet p;
+        p = projetRep.findById(projectId).get();
+
+        Tache t = new Tache();
+
+        /*
+        Tache t ;
+        t = new Tache("", 0, 0.0, "", projectId, new Date(), new Date(),
+        List<Projet> projetList, List<Utilisateur> utilisateurList);
+        */
+
+        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("project", projetRep.findAll());
+        m.addAttribute("tas", t);
+
+        return "tacheCreation";
+    }
+
+    @RequestMapping("/addtache")
+    public String addtache(Tache t) {
+        tacheRep.save(t);
+        return "redirect:/member";
+    }
+
+
+    /* page de gestion d'une tache */
+
+    @RequestMapping("/taskManagement/{projectId}/{taskId}")
+    public String tacheGestion(@PathVariable("taskId") Long taskId, @PathVariable("projectId") Long projectId, Model m) {
+        Tache t;
+        t = tacheRep.findById(taskId).get();
+        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("project", projetRep.findAll());
+        m.addAttribute("task", projetRep.findAll());
+        m.addAttribute("tas", t);
+        return "tacheGestion";
+    }
+
+    @PostMapping(value = "/updatetache")
+    public String updatetache(Tache tacheObj) {
+        tacheRep.save(tacheObj);
+        return "redirect:/member";
+    }
+
+    /* page de messagerie d'un projet */
+
+    @RequestMapping("/messaging")
+    public String messagerie(Model m) {
+        return "messagerie";
+    }
+
+    /* page de planning d'un membre */
+
+    @RequestMapping("/schedule")
+    public String planning(Model m) {
+        return "planning";
+    }
+
+    /* page de repository d'un projet */
+
+    @RequestMapping("/repertory")
+    public String repertoire(Model m) {
+        return "repertoire";
+    }
+
+    /* page de repository d'un projet */
+
+    @RequestMapping("/toDoList")
+    public String pileDeChoses(Model m) {
+        return "pileDeChoses";
+    }
+
+}

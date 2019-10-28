@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel = "stylesheet" type = "text/css" href = "picnic.css" />
+    <title>Index de DeadLine</title>
+</head>
+<body>
+    <h1>Index du site</h1>
+
+    <div>
+        <h1>Avant la connexion</h1>
+    </div>
+    <a th:href="@{connection}">Vers la page de connexion</a> <br><br>
+    <a th:href="@{registration}">Vers la page d'inscription</a> <br><br>
+
+    <!--- une fois connecté -->
+    <div>
+        <h1>Une fois connecté</h1>
+    </div>
+    <a th:href="@{member}">Vers l'espace membre</a>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" type = "text/css" th:href="@{/picnic.css}">
+    <title>Gestion de Projet</title>
+</head>
+<body>
+    <h1>Page de Gestion d'une tache</h1>
+
+    <div>
+        <h1>Après la connexion</h1>
+    </div>
+
+    <a th:href="@{../../home}">Retour vers l'index</a> <br><br>
+    <a th:href="@{../../member}">Vers la page de membre</a>
+
+    <div>
+        <h1>Gerez votre tcahe en cours</h1>
+        
+    </div>
+
+    <h2>Membres inscrits sur l'application</h2>
+    <div th:each="v : ${member}">
+        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+    </div>
+
+    <h2>Projet de référence</h2>
+    <div th:each="v : ${project.utilisateurList}">
+        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.name}" th:attr="style='background: orange'"></span>
+    </div>
+
+    <h2>Responsable actuel de la tache</h2>
+    <div th:each="v : ${tas.utilisateurList}">
+        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: green'"></span>
+    </div>
+      
+    <h2>Tache en cours</h2>
+  
+        <span th:text="'Id: '+ ${tas.id} 
+        + '  - Projet: '+ ${tas.name} 
+        + '  - NbCollaborateurs: '+ ${tas.hour}
+        + '  - NbCollaborateurs: '+ ${tas.completion}
+        + '  - NbCollaborateurs: '+ ${tas.description} 
+        + '  - Date de création: '+ ${tas.dateCreation} 
+        + '  - Date de fin: '+ ${tas.dateDue} "
+         th:attr="style='background: white'"></span>
+
+
+    <br>
+
+    <div>
+        <h1>Tache à modifier</h1>
+    </div>
+
+    
+
+    <form th:action="@{/updatetache}" th:method="post" th:object="${tas}">
+        Id du projet à modifier
+        <input type="text" th:field="*{id}" th:attr="placeholder='Id du projet'"/>
+        Nouveau nom du projet
+        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
+        Temps prévus (en heures)
+        <input type="number" th:field="*{hour}" th:attr="placeholder='nombre d'heures allouées à cette tache'' "/>
+        Description de la tache
+        <input type="text" th:field="*{nbMember}" th:attr="placeholder='Décrivez la tache en quelques mots...' "/>
+        <div>Nouveau membre responsable</div>
+        <input type="text" th:field="*{utilisateurList[0]}" th:attr="placeholder='Id du nouveau membre responsable (doit être inscrit)' "/>
+        
+        Nouvelle date de cloture du projet
+        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
+        <input type="submit" value="Valider">
+    </form>
+
+</body>
+</html>

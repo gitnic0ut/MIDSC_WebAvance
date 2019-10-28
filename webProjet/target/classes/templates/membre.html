@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" type = "text/css" th:href="@{/picnic.css}">
+    
+    <title>Espace Membre de DeadLine</title>
+</head>
+<body>
+    <h1>Espace membre de l'utilisateur</h1>
+
+    <a th:href="@{home}">Retour vers l'index</a> <br><br>
+    <a th:href="@{projetCreate}">Vers la création d'un projet</a> <br><br>
+    <a th:href="@{projectManagement}">Vers la gestion d'un projet</a> <br><br>
+    <a th:href="@{schedule}">Vers le planning du membre</a> <br><br>
+    <a th:href="@{messaging}">Vers la messagerie du projet</a> <br><br>
+    <a th:href="@{repertory}">Vers la page de dépot du projet</a> <br><br>
+    <a th:href="@{toDoList}">Vers la Liste de Choses à Faire du projet</a> <br><br>
+
+    <div>
+        <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1>
+    </div>
+
+    <div>
+        <h1>Ensemble des membres inscrits</h1>
+    </div>
+    <div th:each="v : ${member}">
+        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+    </div>
+
+    <div>
+        <h1>Ensemble des projets crées</h1>
+    </div>
+    <div th:each="v : ${project}">
+            <a th:href=" @{|/projectManagement/${v.id}|} " th:attr="style='color:black'">
+                <span th:text="'Id: '+ ${v.id} 
+                + '  - Projet: '+ ${v.name} 
+                + '  - NbCollaborateurs: '+ ${v.nbMember} " 
+                th:attr="style='background: grey'"></span>
+            </a>
+        
+    </div>
+
+</body>
+</html>
