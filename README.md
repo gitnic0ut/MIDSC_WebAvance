@@ -24,14 +24,14 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 * Historique
 
 
------------------
+----------------------------------
 
 ## A PROPOS DE LA BRANCHE
 
 **Seul le propriétaire de la branche nominative** sera autorisé à faire un quelconque ajout, suppression ou modification au contenu de cette branche
 
 
------------------
+----------------------------------
 
 ## CONTENU DE LA BRANCHE
 
@@ -40,7 +40,7 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 	* Contient l'application du projet
 
 
------------------
+----------------------------------
 
 ## TEMPS DE TRAVAIL PERSONNEL
 
@@ -53,7 +53,7 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 * [2019-10-27] : 3h
 
 
------------------
+----------------------------------
 
 ## VERSION DE DEPART DE L'APPLICATION
 
@@ -64,14 +64,14 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 			* Aucun ajout extérieur depuis le début du projet en dehors
 				* Du cours
 				* Des divers sources internet
-				* Des autres membres du groupe
+			* Aucun apport des autres membres du groupe
 
 
------------------
+----------------------------------
 
 ## HISTORIQUE 
 
-### [2019-10-27]
+### [2019-10-28]
 
 #### Temps de travail estimé
 
@@ -99,3 +99,20 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 	 	* [Code séance 10/04](https://learn.heeere.com/2019-pwa-9s42/raw/cours-10-04.zip)	 	
 	 	* [Morceaux Users/Sécurité](https://learn.heeere.com/2019-pwa-9s42/raw/https-secu-utilisateurs.zip)
 * Début des essais sur l'intégration de WebSecurity 
+
+_____________________________________________________________
+
+
+### [2019-10-29]
+
+#### Temps de travail estimé
+
+* 1h de 15h à 16h - README.md
+
+#### README.md
+
+* Rédaction du squelette du document pour chaque membre du groupe
+* Dépot du document sur chaque Repository nominatif
+* Renommage du README en ' README-[nom du membre].md '
+	* Eviter le conflit avec le fichier README.md déjà présent
+		* Décrivait l'application pour le 1er rendu
