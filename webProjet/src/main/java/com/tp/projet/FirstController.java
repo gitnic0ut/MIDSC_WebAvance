@@ -1,15 +1,19 @@
 package com.tp.projet;
 
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 
+import com.tp.projet.page.*;
+import com.tp.projet.utilisateur.*;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * FirstController
@@ -32,14 +36,34 @@ public class FirstController {
     @Inject
     public TacheRepository tacheRep;
 
+    @Inject
+    UserService userService;
+
+    @Inject
+    public UserRepository userRep;
+
     @RequestMapping("/home")
     public String index() {
         return "index";
     }
 
     @RequestMapping("/connection")
-    public String connexion(Model m) {
+    public String connexion() {
         return "connexion";
+    }
+
+    @RequestMapping("/promoteuser") /*************************/
+    public String promoteuser(Users u) {
+        userService.makeUserAdmin(u.getUserName());
+        return "redirect:/member";
+    }
+
+    @ResponseBody
+    @RequestMapping("/test")
+    public String whoami(Authentication auth) { // inject Authentication to get more info
+        if (auth == null)
+            return "Not Logged In";
+        return "You are "+auth.getName()+" with "+auth.getAuthorities();
     }
 
     @RequestMapping("/registration")

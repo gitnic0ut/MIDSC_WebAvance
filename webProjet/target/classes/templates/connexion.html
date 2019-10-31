@@ -17,10 +17,20 @@
         <h1>Connectez-vous à votre espace personnel</h1>
     </div>
 
-    <form  method="post">
-        <input type="text/" value="Insérez votre pseudonyme"/>
-        <input type="text"  value="Rentrez votre mot de passe"/>
+    
+    <div th:if="${param.error}">
+        Invalid username and password
+    </div>
+    
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <form   th:action="@{/connection}" method="post" >
+        <input type="text"  name="username" placeholder="Insérez votre pseudonyme"/>
+        <input type="password"   name="password" placeholder="Rentrez votre mot de passe"/>
         <input type="submit" value="Valider">
+        
     </form>
 
 </body>

@@ -6,34 +6,36 @@
 Le développement de cette version débute le 2019/10/28 vers 15h, peu de temps après le 1er rendu du Projet Web du lundi 28 octobre à 14h00.
 
 
-## DOCUMENT README.md
+## 1 - DOCUMENT README.md
+
+### STRUCURE DU DOCUMENT
+
+1. Document README.md
+2. A propos de la branche
+3. Contenu de la branche
+4. Temps de travail personnel
+5. Version de départ de l'application
+6. Historique
 
 ### OBJET DU DOCUMENT
 
 Ce fichier tiendra le compte de l'avancée, des apports et du temps consacré au projet par le membre lui-même, propriétaire exclusif de la branche.
+
 Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail personnel.
+
 **Lui seul sera autorisé** à rédiger ce document.
-
-### STRUCURE DU DOCUMENT
-
-* Document README.md
-* A propos de la branche
-* Contenu de la branche
-* Temps de travail personnel
-* Version de départ de l'application
-* Historique
 
 
 ----------------------------------
 
-## A PROPOS DE LA BRANCHE
+## 2 - A PROPOS DE LA BRANCHE
 
 **Seul le propriétaire de la branche nominative** sera autorisé à faire un quelconque ajout, suppression ou modification au contenu de cette branche
 
 
 ----------------------------------
 
-## CONTENU DE LA BRANCHE
+## 3 - CONTENU DE LA BRANCHE
 
 * README.md
 * Dossier ' webProjet '
@@ -42,20 +44,22 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 
 ----------------------------------
 
-## TEMPS DE TRAVAIL PERSONNEL
+## 4 - TEMPS DE TRAVAIL PERSONNEL
 
 ### Total
 
-* 3h
+* 11h
 
 ### Historique du temps de travail
 
-* [2019-10-27] : 3h
+* [2019-10-28] : 3h
+* [2019-10-29] : 1h
+* [2019-10-31] : 8h
 
 
 ----------------------------------
 
-## VERSION DE DEPART DE L'APPLICATION
+## 5 - VERSION DE DEPART DE L'APPLICATION
 
 L'application se base se compose d'une version précédent d'une journée le 1er rendu:
 * Version du dimanche 27 Octobre 2019 intitulée:
@@ -69,7 +73,51 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 
 ----------------------------------
 
-## HISTORIQUE 
+## 6 - HISTORIQUE 
+
+### [2019-10-31]
+
+#### Temps de travail estimé
+
+* 4h de 08h à 12h - Sécutité (restriction des pages) 
+* 4h de 14h à 18h - Sécurité (la connexion fonctionne)
+
+#### Sécurité
+
+* Utilisation comme base du fichier distribué en cours:
+	* [Code séance 10/04](https://learn.heeere.com/2019-pwa-9s42/raw/cours-10-04.zip)
+* Matinée
+	* Le code du cours a été implanté et adapté au projet web
+	* Les 1ères restrictions de page ont été mise en place:
+		* Index, Connexion et Inscription sont laissés visibles par tous
+		* L'espace membre, la création et la gestion de projet sont réservés aux ' ADMIN '
+	* Un fichier ' data.sql ' a été ajouté dans les ressources
+		* Insertion d'utilisateurs et de projets
+		* Cela facilite le debuggage 
+* Après-midi
+	* Le formulaire de connexion est désormais fonctionnel
+		* Dans un 1er temps, je teste depuis le formulaire avec la méthode 'param.error' pour voir si les données sont cohérentes.
+		* Dans un 2ème temps, les tests sont effectués dans la avec la classe Authentification.
+	* Un rôle d'USER est attribué à l'utilisateur qui valide le formulaire avec un login et un mot de passe qui figure dans la BDD
+	* **La 1ère phase de la sécurité est mise en place**
+
+_____________________________________________________________
+
+### [2019-10-29]
+
+#### Temps de travail estimé
+
+* 1h de 15h à 16h - README.md
+
+#### README.md
+
+* Rédaction du squelette du document pour chaque membre du groupe
+* Dépot du document sur chaque Repository nominatif
+* Renommage du README en ' README-[nom du membre].md '
+	* Pour éviter le conflit avec le fichier README.md déjà présent
+		* Celui-ci décrivait l'application pour le 1er rendu
+
+_____________________________________________________________
 
 ### [2019-10-28]
 
@@ -100,19 +148,3 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 	 	* [Morceaux Users/Sécurité](https://learn.heeere.com/2019-pwa-9s42/raw/https-secu-utilisateurs.zip)
 * Début des essais sur l'intégration de WebSecurity 
 
-_____________________________________________________________
-
-
-### [2019-10-29]
-
-#### Temps de travail estimé
-
-* 1h de 15h à 16h - README.md
-
-#### README.md
-
-* Rédaction du squelette du document pour chaque membre du groupe
-* Dépot du document sur chaque Repository nominatif
-* Renommage du README en ' README-[nom du membre].md '
-	* Eviter le conflit avec le fichier README.md déjà présent
-		* Décrivait l'application pour le 1er rendu
