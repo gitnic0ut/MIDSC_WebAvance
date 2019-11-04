@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel = "stylesheet" type = "text/css" href = "picnic.css" />
-    <title>Inscription de DeadLine</title>
-</head>
-<body>
-    <h1>Page d'inscription de DeadLine</h1>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
 
-    <div>
-        <h1>Avant la connexion</h1>
-    </div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Sign Up Page</title>
+    </head>
 
-    <a th:href="@{home}">Retour vers l'index</a> <br><br>
-    <a th:href="@{connection}">Vers la page de connexion</a>
+    <body>
 
-    <div>
-        <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1>
-    </div>
+        <div class="container">
+            <div class="row">
 
-    <form th:action="@{/addutilisateur}" method="post" th:object="${reg}">
-        <input type="text" th:field="*{pseudo}"/>
-        <input type="text" th:field="*{password}"/>
-        <input type="text" th:field="*{email}"/>
-        <input type="submit" value="Valider">
-    </form>
+                <div class="col" layout:fragment="content">
+                    <div>
+                        <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1>
+                    </div>
 
-</body>
+                    <form th:action="@{/addutilisateur}" method="post" th:object="${reg}">
+                        <input type="text" th:field="*{pseudo}" placeholder="login" />
+                        <input type="text" th:field="*{password}" placeholder="password" />
+                        <input type="text" th:field="*{email}" placeholder="email" />
+                        <input type="submit" value="Submit">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+
 </html>

@@ -48,13 +48,14 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 
 ### Total
 
-* 11h
+* 18h
 
 ### Historique du temps de travail
 
-* [2019-10-28] : 3h
-* [2019-10-29] : 1h
+* [2019-11-04] : 6h
 * [2019-10-31] : 8h
+* [2019-10-29] : 1h
+* [2019-10-28] : 3h
 
 
 ----------------------------------
@@ -73,7 +74,86 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 
 ----------------------------------
 
-## 6 - HISTORIQUE 
+## 6 - HISTORIQUE
+
+### [2019-11-04]
+
+#### Temps de travail estimé
+
+* 2h de 06h30 à 08h30 - Thymeleaf (Architecture Layout) 
+* 4h de 18h à 22h - Thymeleaf && Bootstrap (Intégration du Framework CSS)
+
+#### Thymeleaf
+
+* Mise en place de l'architecture propre à l'usage de Thymeleaf dans Spring Boot
+	* **Thymeleaf Layout Dialect**
+	* Permet de générer des ' templates ' avec un découpage des éléments
+		* Header
+		* Main content
+		* Footer
+	* Le fichier de layout pilote le tout.
+	* La structure est :
+		* ressources
+			* templates
+				* fragments
+					* header.html
+					* footer.html
+				* layouts
+					* layout.html
+	* Modification du pom.xml
+		 * Intégration des dépendances nécessaires
+		 	* Thymeleaf
+		 	* Bug apparue concernant la dépendance de ' Groovy '
+		 		* illegal reflective access
+		 		* usage d'une **exclusion**
+		 * Balises **properties**
+		 	* Pour préciser la version de Thymeleaf
+
+* Recours à de nombreuses sources sur internet :
+	* [baeldung.com](https://www.baeldung.com/thymeleaf-spring-layouts)
+	* [www.thymeleaf.org](https://www.thymeleaf.org/doc/articles/layouts.html)
+	* [igorski.co](https://igorski.co/java/spring-boot/layout-dialect-spring-boot-2/)
+	* [medium.com](https://medium.com/@omeryazir/layout-with-thymeleaf-on-spring-boot-b604a46e7265)
+
+#### Bootstrap
+
+* Intégration du Framework CSS au projet pour des raisons évidentes de gain de temps
+* Elimination définitive du Framework **picnic CSS** utilisé jusque-là
+* Tous les fichiers nécessaires (minifiés) ont été placés dans le projet
+	* CSS
+		* bootstrap.min.css
+		* custom.css (fichier destiné à introduire des règles supplémentaires)
+	* JS
+		* bootstrap.min.js
+		* jquery-3.4.1.min.js
+* Thymeleaf layout impose une gymnastique supplémentaire
+	* Certaines règles de priorité sont apparues
+		* layout > tout le reste
+
+* Encore une fois, consultation des documenations et recherches d'exemples :
+	* [getbootstrap.com](https://getbootstrap.com/)
+	* [mdbootstrap.com](https://mdbootstrap.com/)
+	* [startbootstrap.com](https://startbootstrap.com/)
+	* [medium.com](https://medium.com/@omeryazir/how-to-integrate-spring-boot-with-bootstrap-and-thymeleaf-5744fc8475d)
+
+#### Visuel
+
+* Thymeleaf Layout et Bootstrap sont intégrés aux 1ères pages:
+	* Accueil
+	* Connexion
+	* Inscription
+* Le découpage en module aide énormément à faciliter le travail
+
+#### Sécurité
+
+* Intervention dans le Controller
+	* Dans la méthode de redirection vers la page de connection
+		* Rajout d'un test supplémentaire 
+* Dèsormais, si on clique sur connexion:
+	* Non connecté -> on est dirigé vers la page de connexion et son formulaire
+	* Connecté     -> on est dirigé vers l'espace membre
+
+_____________________________________________________________ 
 
 ### [2019-10-31]
 

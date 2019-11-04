@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Users> opt = repo.findByUserName(username);
-        if (opt.empty() == null) {
+        if (!opt.isPresent()) {
             throw new UsernameNotFoundException(username);
         }
         Users u = opt.get();

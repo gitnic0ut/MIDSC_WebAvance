@@ -1,13 +1,12 @@
 package com.tp.projet;
 
-import java.util.Optional;
-
 import javax.inject.Inject;
 
 import com.tp.projet.page.*;
 import com.tp.projet.utilisateur.*;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +47,15 @@ public class FirstController {
     }
 
     @RequestMapping("/connection")
-    public String connexion() {
+    public String connexion(Authentication auth) {
+        /* we test if the user is connected */
+        if (auth != null) {
+            /* if that's the case, we redirect him/her to the member space */
+            if (auth.getAuthorities().toString().equals("[USER]")
+                    || auth.getAuthorities().toString().equals("[ADMIN]")) {
+                return "membre";
+            }
+        }
         return "connexion";
     }
 
@@ -63,7 +70,7 @@ public class FirstController {
     public String whoami(Authentication auth) { // inject Authentication to get more info
         if (auth == null)
             return "Not Logged In";
-        return "You are "+auth.getName()+" with "+auth.getAuthorities();
+        return "You are " + auth.getName() + " with " + auth.getAuthorities();
     }
 
     @RequestMapping("/registration")
@@ -104,7 +111,6 @@ public class FirstController {
         return "redirect:/member";
     }
 
-
     /* page de gestion d'un projet */
 
     @RequestMapping("/projectManagement/{projectId}")
@@ -124,22 +130,20 @@ public class FirstController {
         return "redirect:/member";
     }
 
-    
     /* page de création d'une tache */
 
     @RequestMapping("/taskCreate/{projectId}")
     public String tacheCreation(@PathVariable("projectId") Long projectId, Model m) {
 
-        Projet p;
-        p = projetRep.findById(projectId).get();
-
+        /*
+         * Projet p; p = projetRep.findById(projectId).get();
+         */
         Tache t = new Tache();
 
         /*
-        Tache t ;
-        t = new Tache("", 0, 0.0, "", projectId, new Date(), new Date(),
-        List<Projet> projetList, List<Utilisateur> utilisateurList);
-        */
+         * Tache t ; t = new Tache("", 0, 0.0, "", projectId, new Date(), new Date(),
+         * List<Projet> projetList, List<Utilisateur> utilisateurList);
+         */
 
         m.addAttribute("member", utilisateurRep.findAll());
         m.addAttribute("project", projetRep.findAll());
@@ -154,11 +158,11 @@ public class FirstController {
         return "redirect:/member";
     }
 
-
     /* page de gestion d'une tache */
 
     @RequestMapping("/taskManagement/{projectId}/{taskId}")
-    public String tacheGestion(@PathVariable("taskId") Long taskId, @PathVariable("projectId") Long projectId, Model m) {
+    public String tacheGestion(@PathVariable("taskId") Long taskId, @PathVariable("projectId") Long projectId,
+            Model m) {
         Tache t;
         t = tacheRep.findById(taskId).get();
         m.addAttribute("member", utilisateurRep.findAll());

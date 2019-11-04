@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel = "stylesheet" type = "text/css" href = "picnic.css" />
-    <title>Connexion de DeadLine</title>
-</head>
-<body>
-    <h1>Page de connexion de DeadLine</h1>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
 
-    <a th:href="@{home}">Retour vers l'index</a> <br><br>
-    <a th:href="@{registration}">Vers la page d'inscription</a>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Login Page</title>
+    </head>
 
-    <div>
-        <h1>Connectez-vous à votre espace personnel</h1>
-    </div>
+    <body>
 
-    
-    <div th:if="${param.error}">
-        Invalid username and password
-    </div>
-    
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
+        <div class="container">
+            <div class="row">
 
-    <form   th:action="@{/connection}" method="post" >
-        <input type="text"  name="username" placeholder="Insérez votre pseudonyme"/>
-        <input type="password"   name="password" placeholder="Rentrez votre mot de passe"/>
-        <input type="submit" value="Valider">
-        
-    </form>
+                <div class="col" layout:fragment="content">
+                    <div>
+                        <h1>Connectez-vous à votre espace personnel</h1>
+                    </div>
 
-</body>
+                    <div th:if="${param.error}">
+                        Invalid username and password
+                    </div>
+
+                    <div th:if="${param.logout}">
+                        You have been logged out.
+                    </div>
+
+                    <form th:action="@{/connection}" method="post">
+                        <input type="text" name="username" placeholder="Insérez votre pseudonyme" />
+                        <input type="password" name="password" placeholder="Rentrez votre mot de passe" />
+                        <input type="submit" value="Valider">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+
 </html>
