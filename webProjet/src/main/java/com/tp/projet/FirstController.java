@@ -6,7 +6,8 @@ import com.tp.projet.page.*;
 import com.tp.projet.utilisateur.*;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class FirstController {
+
+    PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     /**
      * Methodes et attributs de la 1ère version du Projet
@@ -44,6 +47,12 @@ public class FirstController {
     @RequestMapping("/home")
     public String index() {
         return "index";
+    }
+
+    /* peut-être en sursis si inutile */
+    @RequestMapping("/logout")
+    public String logout() {
+        return "logout";
     }
 
     @RequestMapping("/connection")
@@ -81,6 +90,7 @@ public class FirstController {
 
     @RequestMapping("/addutilisateur")
     public String addutilisateur(Utilisateur u) {
+        u.setPassword(encoder.encode(u.getPassword()));
         utilisateurRep.save(u);
         return "redirect:/member";
     }

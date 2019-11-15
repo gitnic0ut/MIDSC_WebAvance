@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +23,12 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests().antMatchers("/home", "/connection", "/registration").permitAll()
                                 .antMatchers("/member").hasRole("USER");
                 http.formLogin().loginPage("/connection").usernameParameter("username").passwordParameter("password")
-                                .and().logout() // NB: CSRF will disallow visiting GET /logout manually
+                                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home?logout") // NB: CSRF will disallow visiting GET /logout manually
                                 .and().csrf().ignoringAntMatchers("/h2-console/**")// don't apply CSRF protection to
-                                                                                   // /h2-console
+                                                                                   
                 ;
-                http.headers().frameOptions().sameOrigin();
+                http.headers().frameOptions().sameOrigin(); // /h2-console
+                
         }
 
         @Override

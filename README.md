@@ -74,8 +74,6 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 
 ----------------------------------
 
-## 6 - HISTORIQUE
-
 ### [2019-11-04]
 
 #### Temps de travail estimé
@@ -152,6 +150,28 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 * Dèsormais, si on clique sur connexion:
 	* Non connecté -> on est dirigé vers la page de connexion et son formulaire
 	* Connecté     -> on est dirigé vers l'espace membre
+
+
+_____________________________________________________________ 
+
+
+## 6 - HISTORIQUE
+
+### [2019-11-15]
+
+#### Temps de travail estimé
+
+* 2h de 06h30 à 08h30 - Sécurité 
+
+#### Sécurité
+
+* Implémentation du logout
+* Encodage du mot de passe à l'inscription au format BCrypt 
+
+#### Liste exigée
+
+* Rédaction d'une liste des chose à faire demandée par le groupe 
+	* Rédigée la semaine précédente (Temps non compté)
 
 _____________________________________________________________ 
 
