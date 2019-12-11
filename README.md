@@ -48,10 +48,11 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 
 ### Total
 
-* 18h
+* 25h
 
 ### Historique du temps de travail
 
+* [2019-12-11] : 7h
 * [2019-11-15] : 2h
 * [2019-11-04] : 6h
 * [2019-10-31] : 8h
@@ -70,12 +71,46 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 			* Aucun ajout extérieur depuis le début du projet en dehors
 				* Du cours
 				* Des divers sources internet
-			* Aucun apport des autres membres du groupe
+			* Cette version représente le travail d'un membre
+			* Chaque membre doit travailler dans son propre espace sur Github
 
 
 ----------------------------------
 
 ## 6 - HISTORIQUE
+
+
+### [2019-12-11]
+
+#### Temps de travail estimé
+
+* 7h de 04h30 à 01h30 - Sécurité 
+
+#### Sécurité
+
+* Affichage des information en fonction du statut du membre
+	* La barre de navigation affiche les liens si l'utilisateur est connecté ou pas
+		* Connecté :
+			* Disparition de connexion et inscription
+			* Apparition de déconnexion
+	* Le message d'invitation de l'index change en fonction du statut
+* Modification du 'pom.xml' pour accéder aux méthodes de sécurité depuis Thymeleaf
+
+#### Interface
+
+* Rajout du layout dans les pages qui en étaient privées
+	* Toutes les pages qui nécessitaient d'être connectées
+* Corrections sur les liens erronés
+* Problème d'appel des fichiers requis par bootstrap
+
+#### Dépot GitHub sur la branche master
+
+* Réorganisation des fichiers de la branche 'Master'
+* Dépot d'une version de l'application au nom du groupe
+	* 1er Rendu final du projet
+		* Il n'y a une version thymeleaf incomplète
+
+_____________________________________________________________
 
 ### [2019-11-15]
 

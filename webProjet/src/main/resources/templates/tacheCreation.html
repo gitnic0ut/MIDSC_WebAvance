@@ -1,47 +1,54 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" type = "text/css" th:href="@{/picnic.css}">
-    <title>Creation de Tache</title>
-</head>
-<body>
-    <h1>Page de Création d'une tache</h1>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
 
-    <div>
-        <h1>Après la connexion</h1>
-    </div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Création de taches</title>
+    </head>
 
-    <a th:href="@{../home}">Retour vers l'index</a> <br><br>
-    <a th:href="@{../member}">Vers la page de membre</a>
+    <body>
 
-    <div>
-        <h1>Créez votre tache</h1>
-        <p>Membres inscrits sur l'application</p>
-    </div>
+        <div class="container">
+            <div class="row">
 
-    <div th:each="v : ${member}">
-        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: yellow'"></span>
-    </div>
+                <div class="col" layout:fragment="content">
+                    <h1>Page de Création d'une tache</h1>
 
-    <br>    
+                    <div>
+                        <h1>Après la connexion</h1>
+                    </div>
 
-    <form th:action="@{/addtache}" method="post" th:object="${tas}">
-        Nom du projet
-        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
-        Nombre d'heures prévues pour cette tache
-        <input type="number" th:field="*{hour}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
-        Pourcentage de complétion
-        <input type="number" th:field="*{completion}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
-        Projet affilié
-        <input type="text" th:field="*{projetList[0].id}" th:attr="placeholder='Id du projet'"/>
-        
-        Date de cloture du projet
-        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
-        <input type="submit" value="Valider">
-    </form>
+                    <a th:href="@{../home}">Retour vers l'index</a> <br><br>
+                    <a th:href="@{../member}">Vers la page de membre</a>
 
-</body>
+                    <div>
+                        <h1>Créez votre tache</h1>
+                        <p>Membres inscrits sur l'application</p>
+                    </div>
+
+                    <div th:each="v : ${member}">
+                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: yellow'"></span>
+                    </div>
+
+                    <br>    
+
+                    <form th:action="@{/addtache}" method="post" th:object="${tas}">
+                        Nom du projet
+                        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
+                        Nombre d'heures prévues pour cette tache
+                        <input type="number" th:field="*{hour}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
+                        Pourcentage de complétion
+                        <input type="number" th:field="*{completion}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
+                        Projet affilié
+                        <input type="text" th:field="*{projetList[0].id}" th:attr="placeholder='Id du projet'"/>
+                        
+                        Date de cloture du projet
+                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
+                        <input type="submit" value="Valider">
+                    </form>
+
+                </div>
+            </div>
+        </div> 
+
+    </body>
 </html>

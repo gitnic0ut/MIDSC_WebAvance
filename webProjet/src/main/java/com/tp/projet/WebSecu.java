@@ -23,7 +23,7 @@ public class WebSecu extends WebSecurityConfigurerAdapter {
                 http.authorizeRequests().antMatchers("/home", "/connection", "/registration").permitAll()
                                 .antMatchers("/member").hasRole("USER");
                 http.formLogin().loginPage("/connection").usernameParameter("username").passwordParameter("password")
-                                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home?logout") // NB: CSRF will disallow visiting GET /logout manually
+                                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home") // NB: CSRF will disallow visiting GET /logout manually
                                 .and().csrf().ignoringAntMatchers("/h2-console/**")// don't apply CSRF protection to
                                                                                    
                 ;

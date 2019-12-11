@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel = "stylesheet" type = "text/css" href = "picnic.css" />
-    <title>Messagerie de l'application</title>
-</head>
-<body>
-    <h1>Page de Messagerie</h1>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
 
-    <div>
-        <h1>Après la connexion</h1>
-    </div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Messagerie</title>
+    </head>
 
-    <a th:href="@{home}">Retour vers l'index</a> <br><br>
-    <a th:href="@{member}">Vers la page de membre</a>
+    <body>
 
-    <div>
-        <h1>Postez votre message</h1>
-    </div>
+        <div class="container">
+            <div class="row">
 
-</body>
+                <div class="col" layout:fragment="content">
+                    <h1>Page de Messagerie</h1>
+
+                    <div>
+                        <h1>Après la connexion</h1>
+                    </div>
+
+                    <a th:href="@{home}">Retour vers l'index</a> <br><br>
+                    <a th:href="@{member}">Vers la page de membre</a>
+
+                    <div>
+                        <h1>Postez votre message</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
 </html>

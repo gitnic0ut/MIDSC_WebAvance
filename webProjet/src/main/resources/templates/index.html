@@ -16,16 +16,14 @@
                 <div class="col" layout:fragment="content">
                     <h1>Index du site</h1>
 
-                    <!--<div>
-                        <h1>Avant la connexion</h1>
+                    <div sec:authorize="isAnonymous()">
+                           Cher visiteur, <br> 
+                           veuillez vous connecter en cliquant sur <b>Login</b> pour accéder à votre espace personnel <br> 
+                           ou vous inscrire à l'application en en cliquant sur <b>Sign Up</b>           
                     </div>
-                    <a th:href="@{connection}">Vers la page de connexion</a> <br><br>
-                    <a th:href="@{registration}">Vers la page d'inscription</a> <br><br>
-
-                    <div>
-                        <h1>Une fois connecté</h1>
-                    </div>
-                    <a th:href="@{member}">Vers l'espace membre</a>-->                 
+                    <div sec:authorize="hasRole('USER')">
+                            Vous êtes connecté et avez le statut <span sec:authentication="principal.authorities"></span>                   
+                     </div>             
 
                 </div>
             </div>

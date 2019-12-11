@@ -23,12 +23,6 @@ public class FirstController {
 
     PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    /**
-     * Methodes et attributs de la 1ère version du Projet
-     */
-
-    /* Lorsqu'on est connecté */
-
     @Inject
     public UtilisateurRepository utilisateurRep;
 
@@ -74,9 +68,10 @@ public class FirstController {
         return "redirect:/member";
     }
 
+    /* fonction pour tester le rôle de l'utilisateur */
     @ResponseBody
     @RequestMapping("/test")
-    public String whoami(Authentication auth) { // inject Authentication to get more info
+    public String quiEstTu(Authentication auth) {
         if (auth == null)
             return "Not Logged In";
         return "You are " + auth.getName() + " with " + auth.getAuthorities();

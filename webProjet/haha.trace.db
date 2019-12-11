@@ -2591,3 +2591,7 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:C:/Users/NIC
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 67 more
+2019-12-11 10:07:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" non trouvée
+Table "USERS" not found; SQL statement:
+INSERT INTO Users (id, user_name, display_name, password, email, date_inscription) VALUES (1, 'admin', 'admin', '$2a$10$bpNMKeaQXKpJ4JVxOHWvu.tZdmCLT9nKcZreJ/ELfCgmTCyhC7GPy', 'nicolas.trotta@univ.fr', Cast('2019-10-30T11:25' as datetime)) [42102-199]
