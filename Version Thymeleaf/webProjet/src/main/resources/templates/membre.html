@@ -1,0 +1,38 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Espace Membre de DeadLine</title>
+</head>
+<body>
+    <div class="col" layout:fragment="content">
+        <div th:replace="fragments/menunav  :: menunav"></div> <br>
+        <h1>Espace membre de l'utilisateur</h1><br>
+
+        
+        <div>
+            <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1><br>
+        </div>
+
+        <div>
+            <h1>Ensemble des membres inscrits</h1><br>
+        </div>
+        <div th:each="v : ${member}">
+            <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+        </div>
+
+        <div>
+            <h1>Ensemble des projets crées</h1><br>
+        </div>
+        <div th:each="v : ${project}">
+                <a th:href=" @{|/projectManagement/${v.id}|} " th:attr="style='color:black'">
+                    <span th:text="'Id: '+ ${v.id} 
+                    + '  - Projet: '+ ${v.name} 
+                    + '  - NbCollaborateurs: '+ ${v.nbMember} " 
+                    th:attr="style='background: grey'"></span>
+                </a>
+            
+        </div>
+    </div>
+
+</body>
+</html>

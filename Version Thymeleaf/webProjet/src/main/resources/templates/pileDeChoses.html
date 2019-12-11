@@ -1,0 +1,22 @@
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ToDoList</title>
+</head>
+<body>
+    <div class="container">  
+        <div class="col" layout:fragment="content">
+            <div th:replace="fragments/menunav  :: menunav"></div><br>
+            <h1 >Page de la pile de choses à faire</h1> <br>
+            
+            
+
+            <div>
+                <h1>Tableau Kanban</h1>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

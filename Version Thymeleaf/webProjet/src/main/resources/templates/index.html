@@ -1,0 +1,40 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Index</title>
+    </head>
+
+    <body>
+        test
+        <div class="container">
+            <div class="row">
+                <!--<div class="col-2" layout:fragment="sidebar">
+                    <h1>Sidebar</h1>
+                    <a href="#">Login</a>
+                </div>-->
+                
+                <div class="col" layout:fragment="content">
+                    <h1>Accueil du site</h1><br><br>
+                   <div >
+                    <p class="lead font-weight">Bienvenue sur Deadline !! <br>
+                    Vous êtes étudiant, vous aves plusieurs projets et vous ne savez plus comment vous organiser ? <br>
+                   Alors inscrivez-vous dés maintenant  , car Deadline est LA solution <br>
+                    Si c'est déjà fait il ne vous reste plus qu'à vous connecter</p>
+                </div>  
+                    <!--<div>
+                        <h1>Avant la connexion</h1>
+                    </div>
+                    <a th:href="@{connection}">Vers la page de connexion</a> <br><br>
+                    <a th:href="@{registration}">Vers la page d'inscription</a> <br><br>
+
+                    <div>
+                        <h1>Une fois connecté</h1>
+                    </div>
+                    <a th:href="@{member}">Vers l'espace membre</a>-->                 
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

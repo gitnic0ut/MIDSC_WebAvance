@@ -1,0 +1,69 @@
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gestion de Projet</title>
+</head>
+<body>
+    <div class="col" layout:fragment="content">
+        <div th:replace="fragments/menunav2  :: menunav"></div> <br>
+        <h1>Page de Gestion d'un projet</h1> <br>
+
+        
+        <div>
+            <h2>Gerez votre projet en cours</h2> <br>
+            
+        </div>
+
+        <h2>Membres inscrits sur l'application</h2> <br>
+        <div th:each="v : ${member}">
+            <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+        </div>
+
+        <h2>Responsable actuel du projet</h2> <br>
+        <div th:each="v : ${pro.utilisateurList}">
+            <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: green'"></span>
+        </div>
+
+        <h2>Taches du projet</h2> <br>
+        <div th:each="v : ${task}">
+            <span th:text="'Identifiant: '+ ${v.id} + '  - Tache: '+ ${v.name}" th:attr="style='background: orange'"></span>
+        </div>
+        
+        <h2>Projet en cours</h2> <br>
+    
+            <span th:text="'Id: '+ ${pro.id} 
+            + '  - Projet: '+ ${pro.name} 
+            + '  - NbCollaborateurs: '+ ${pro.nbMember} 
+            + '  - Date de création: '+ ${pro.dateCreation} 
+            + '  - Date de fin: '+ ${pro.dateDue} "
+            th:attr="style='background: white'"></span>
+
+
+        <br>
+
+        <div>
+            <h1>Projet à modifier</h1> <br>
+        </div>
+
+        <h2><a th:href=" @{|/taskCreate/${pro.id}|} " th:attr="style='color:black'">Nouvelle tache à ajouter au projet</a></h2>
+
+        <form th:action="@{/updateprojet}" th:method="post" th:object="${pro}">
+            Id du projet à modifier : 
+            <input type="text" th:field="*{id}" th:attr="placeholder='Id du projet'"/><br>
+            Nouveau nom du projet :  
+            <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>   <br> 
+            Nouveau membre responsable :
+            <input type="text" th:field="*{utilisateurList[0]}" th:attr="placeholder='Id du nouveau membre responsable (doit être inscrit)' "/>  <br>
+            Nombre de membres prévus : 
+            <input type="text" th:field="*{nbMember}" th:attr="placeholder='nombre de membres prévus' "/> <br>
+            Nouvelle date de cloture du projet : 
+            <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/> <br>
+            <input type="submit" value="Valider">
+        </form>
+        <br><br><br><br><br><br><br><br><br><br>
+    </div>
+    
+
+</body>
+</html>

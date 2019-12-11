@@ -1,0 +1,30 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/layout">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Sign Up Page</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col" layout:fragment="content">
+                    <div>
+                        <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1> </br>
+                    </div>
+
+                    <form th:action="@{/addutilisateur}" method="post" th:object="${reg}">
+                        <p class="lead font-weight"> Votre Pseudo : <input type="text" th:field="*{pseudo}" placeholder="login" /></p>
+                        <p class="lead font-weight"> Mot de Passe: <input type="text" th:field="*{password}" placeholder="password" /></p> 
+                        <p class="lead font-weight"> Adresse mail:  <input type="text" th:field="*{email}" placeholder="email" /></p>
+                        <p class="lead font-weight">  <input type="submit" value="Submit"></p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
