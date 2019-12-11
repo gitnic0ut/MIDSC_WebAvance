@@ -46,14 +46,15 @@ public class Projet {
     @JoinTable(
         name = "project_has", 
         joinColumns = @JoinColumn(name = "project_id"), 
-        inverseJoinColumns = @JoinColumn(name = "utilisateur_id", nullable = true)
+        inverseJoinColumns = @JoinColumn(name = "user_id", nullable = true)
     )
-    private List<Utilisateur> utilisateurList;
+    private List<Users> utilisateurList;
 
     /**
      *  Table de liaison avec des taches 
      *    1 seul projet peut comporter de 0 à x taches
      * */
+    /*
     @ManyToMany
     @JoinTable(
         name = "tache_has", 
@@ -61,21 +62,21 @@ public class Projet {
         inverseJoinColumns = @JoinColumn(name = "tache_id", nullable = true)
     )
     private List<Tache> tacheList;
-
+*/
     
     /* Constructeurs */
 
     public Projet() {
     }
 
-    public Projet(String name, int nbMember, Date dateCreation, Date dateDue, List<Utilisateur> utilisateurList,
+    public Projet(String name, int nbMember, Date dateCreation, Date dateDue, List<Users> utilisateurList,
             List<Tache> tacheList, long id) {
         this.name = name;
         this.nbMember = nbMember;
         this.dateCreation = dateCreation;
         this.dateDue = dateDue;
         this.utilisateurList = utilisateurList;
-        this.tacheList = tacheList;
+        //this.tacheList = tacheList;
         this.id = id;
     }
 
@@ -122,20 +123,23 @@ public class Projet {
         this.dateDue = dateDue;
     }
 
-    public List<Utilisateur> getUtilisateurList() {
+    public List<Users> getUtilisateurList() {
         return utilisateurList;
     }
 
-    public void setUtilisateurList(List<Utilisateur> utilisateurList) {
+    public void setUtilisateurList(List<Users> utilisateurList) {
         this.utilisateurList = utilisateurList;
     }
 
+    /*
     public List<Tache> getTacheList() {
         return tacheList;
     }
 
+    
     public void setTacheList(List<Tache> tacheList) {
         this.tacheList = tacheList;
     }
+    */
 
 }

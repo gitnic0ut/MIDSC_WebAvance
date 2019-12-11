@@ -11,9 +11,16 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+
+import com.tp.projet.page.Projet;
 
 import lombok.Data;
 
@@ -25,6 +32,7 @@ import lombok.Data;
 public class Users {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String userName;
@@ -38,6 +46,14 @@ public class Users {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "project_has", 
+        joinColumns = @JoinColumn(name = "user_id", nullable = true), 
+        inverseJoinColumns = @JoinColumn(name = "project_id", nullable = true)
+    )
+    private List<Projet> projetList;
 
     public Users() {
     }
@@ -54,6 +70,16 @@ public class Users {
         this.displayName = displayName;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         this.password = derivedPassword;
+    }
+
+    public Users(String userName, String displayName, String password, String email, Date dateInscription,
+    List<String> roles) {
+        this.userName = userName;
+        this.displayName = displayName;
+        this.password = password;
+        this.email = email;
+        this.dateInscription = dateInscription;
+        this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
     }
     
 

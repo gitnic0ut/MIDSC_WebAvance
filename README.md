@@ -48,11 +48,11 @@ Chaque membre tiendra le compte **scrupuleux et détaillé** de son travail pers
 
 ### Total
 
-* 25h
+* 29h
 
 ### Historique du temps de travail
 
-* [2019-12-11] : 7h
+* [2019-12-11] : 9h
 * [2019-11-15] : 2h
 * [2019-11-04] : 6h
 * [2019-10-31] : 8h
@@ -71,7 +71,7 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 			* Aucun ajout extérieur depuis le début du projet en dehors
 				* Du cours
 				* Des divers sources internet
-			* Cette version représente le travail d'un membre
+			* Cette version représente le travail d'un membre uniquement
 			* Chaque membre doit travailler dans son propre espace sur Github
 
 
@@ -84,7 +84,8 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 
 #### Temps de travail estimé
 
-* 7h de 04h30 à 01h30 - Sécurité 
+* 7h de 04h30 à 11h30 - Sécurité 
+* 2h de 20h00 à 22h00 - Substitution Users à Utilisateur
 
 #### Sécurité
 
@@ -109,6 +110,14 @@ L'application se base se compose d'une version précédent d'une journée le 1er
 * Dépot d'une version de l'application au nom du groupe
 	* 1er Rendu final du projet
 		* Il n'y a une version thymeleaf incomplète
+
+#### Substitution de la classe Users à la classe Utilisateur
+
+* Depuis l'ajout de la sécurité, la connexion était dissociée de la gestion des membres
+	* Il était possible de créer des utilisateurs avec qui il était impossible de se connecter
+	* Users devient la classe principale pour stocker les membres en mémoire
+* Il est de nouveau de créer des projets avec le membre nouvellement inscrit
+	* Il ne reste plus qu'à s'occuper des taches
 
 _____________________________________________________________
 

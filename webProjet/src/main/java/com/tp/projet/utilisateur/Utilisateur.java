@@ -33,6 +33,7 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    /*
     @ManyToMany
     @JoinTable(
         name = "project_has", 
@@ -40,6 +41,7 @@ public class Utilisateur {
         inverseJoinColumns = @JoinColumn(name = "project_id", nullable = true)
     )
     private List<Projet> projetList;
+    */
 
     public Utilisateur() {
     }
@@ -51,7 +53,7 @@ public class Utilisateur {
         this.email = email;
         this.dateInscription = dateInscription;
         this.id = id;
-        this.projetList = projetList;
+        //this.projetList = projetList;
     }
 
     public String getPseudo() {
@@ -94,12 +96,16 @@ public class Utilisateur {
         this.id = id;
     }
 
+    /*
     public List<Projet> getProjetList() {
         return projetList;
     }
+    
+
 
     public void setProjetList(List<Projet> projetList) {
         this.projetList = projetList;
     }
         
+    */
 }

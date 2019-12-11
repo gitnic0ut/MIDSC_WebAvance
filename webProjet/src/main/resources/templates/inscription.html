@@ -16,7 +16,7 @@
                     </div>
 
                     <form th:action="@{/addutilisateur}" method="post" th:object="${reg}">
-                        <input type="text" th:field="*{pseudo}" placeholder="login" />
+                        <input type="text" th:field="*{userName}" placeholder="login" />
                         <input type="text" th:field="*{password}" placeholder="password" />
                         <input type="text" th:field="*{email}" placeholder="email" />
                         <input type="submit" value="Submit">

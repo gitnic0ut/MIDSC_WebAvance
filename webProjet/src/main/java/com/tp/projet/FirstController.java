@@ -51,9 +51,9 @@ public class FirstController {
 
     @RequestMapping("/connection")
     public String connexion(Authentication auth) {
-        /* we test if the user is connected */
+        /* on vérifie que l'utilisateur soit connecté */
         if (auth != null) {
-            /* if that's the case, we redirect him/her to the member space */
+            /* si c'est le cas, il est redirigé vers l'espace membre */
             if (auth.getAuthorities().toString().equals("[USER]")
                     || auth.getAuthorities().toString().equals("[ADMIN]")) {
                 return "membre";
@@ -79,14 +79,14 @@ public class FirstController {
 
     @RequestMapping("/registration")
     public String inscription(Model m) {
-        m.addAttribute("reg", new Utilisateur());
+        m.addAttribute("reg", new Users());
         return "inscription";
     }
 
     @RequestMapping("/addutilisateur")
-    public String addutilisateur(Utilisateur u) {
+    public String addutilisateur(Users u) {
         u.setPassword(encoder.encode(u.getPassword()));
-        utilisateurRep.save(u);
+        userRep.save(u);
         return "redirect:/member";
     }
 
@@ -95,7 +95,7 @@ public class FirstController {
     /* page de l'espace membre */
     @RequestMapping("/member")
     public String membre(Model m) {
-        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("member", userRep.findAll());
         m.addAttribute("project", projetRep.findAll());
         return "membre";
     }
@@ -104,7 +104,7 @@ public class FirstController {
 
     @RequestMapping("/projetCreate")
     public String projetCreation(Model m) {
-        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("member", userRep.findAll());
         m.addAttribute("pro", new Projet());
 
         return "projetCreation";
@@ -122,7 +122,7 @@ public class FirstController {
     public String projetGestion(@PathVariable("projectId") Long projectId, Model m) {
         Projet p;
         p = projetRep.findById(projectId).get();
-        m.addAttribute("member", utilisateurRep.findAll());
+        m.addAttribute("member", userRep.findAll());
         m.addAttribute("project", projetRep.findAll());
         m.addAttribute("task", tacheRep.findAll());
         m.addAttribute("pro", p);

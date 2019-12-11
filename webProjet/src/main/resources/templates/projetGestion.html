@@ -18,12 +18,12 @@
 
                     <h2>Membres inscrits sur l'application</h2>
                     <div th:each="v : ${member}">
-                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
                     </div>
 
                     <h2>Responsable actuel du projet</h2>
                     <div th:each="v : ${pro.utilisateurList}">
-                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: green'"></span>
+                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: green'"></span>
                     </div>
 
                     <h2>Taches du projet</h2>

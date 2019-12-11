@@ -29,7 +29,7 @@
                         <h1>Ensemble des membres inscrits</h1>
                     </div>
                     <div th:each="v : ${member}">
-                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.pseudo} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
                     </div>
 
                     <div>
