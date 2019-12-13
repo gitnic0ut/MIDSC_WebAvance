@@ -11,39 +11,37 @@
                 
                 <div class="col" layout:fragment="content">
 
-                    <h1>Espace membre de l'utilisateur</h1>
+                    <h1>Espace membre de <span sec:authentication="name"></span></h1>
 
-                    <a th:href="@{/home}">Retour vers l'index</a> <br><br>
-                    <a th:href="@{/projetCreate}">Vers la création d'un projet</a> <br><br>
-                    <!--<a th:href="@{/projectManagement}">Vers la gestion d'un projet</a> <br><br>-->
-                    <a th:href="@{/schedule}">Vers le planning du membre</a> <br><br>
-                    <a th:href="@{/messaging}">Vers la messagerie du projet</a> <br><br>
-                    <a th:href="@{/repertory}">Vers la page de dépot du projet</a> <br><br>
-                    <a th:href="@{/toDoList}">Vers la Liste de Choses à Faire du projet</a> <br><br>
+                    <ul class="list-group">
 
-                    <div>
-                        <h1>Inscrivez-vous pour vous rendre à l'espace membre</h1>
-                    </div>
-
-                    <div>
-                        <h1>Ensemble des membres inscrits</h1>
-                    </div>
-                    <div th:each="v : ${member}">
-                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
-                    </div>
-
-                    <div>
-                        <h1>Ensemble des projets crées</h1>
-                    </div>
-                    <div th:each="v : ${project}">
-                            <a th:href=" @{|/projectManagement/${v.id}|} " th:attr="style='color:black'">
-                                <span th:text="'Id: '+ ${v.id} 
-                                + '  - Projet: '+ ${v.name} 
-                                + '  - NbCollaborateurs: '+ ${v.nbMember} " 
-                                th:attr="style='background: grey'"></span>
-                            </a>
+                        <li class="list-group-item">
+                            <h2>Ensemble des membres inscrits</h2>         
+                            <div th:each="v : ${member}">
+                                <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+                            </div>
+                        </li>
                         
-                    </div>
+                        <li class="list-group-item">
+                            <h2>Ensemble des projets crées par <span sec:authentication="name"></span></h2>
+                            <div th:each="v : ${project}">                        
+
+                                <a th:if="${u.id} == ${v.userList[0].id}" th:href=" @{|/projectManagement/${v.id}|} " th:attr="style='color:black'">
+                                    <span th:text="'Id: '+ ${v.id} 
+                                    + '  - Projet: '+ ${v.name} 
+                                    + '  - NbCollaborateurs: '+ ${v.nbMember} " 
+                                    th:attr="style='background: grey'"></span>
+                                </a>
+                            
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <h2><a th:href="@{/projetCreate}">Création d'un projet</a></h2>
+                        </li>
+
+                    </ul>
+
 
                 </div>
             </div>

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -28,7 +29,6 @@ import lombok.Data;
  * User
  */
 @Entity
-@Data
 public class Users {
 
     @Id
@@ -50,12 +50,16 @@ public class Users {
     @ManyToMany
     @JoinTable(
         name = "project_has", 
-        joinColumns = @JoinColumn(name = "user_id", nullable = true), 
-        inverseJoinColumns = @JoinColumn(name = "project_id", nullable = true)
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     private List<Projet> projetList;
 
     public Users() {
+    }
+
+    public Users(long id) {
+        this.id = id;
     }
 
     public Users(String userName) {
@@ -80,6 +84,70 @@ public class Users {
         this.email = email;
         this.dateInscription = dateInscription;
         this.roles.addAll(roles.stream().map(UserRole::valueOf).collect(Collectors.toList()));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public List<Projet> getProjetList() {
+        return projetList;
+    }
+
+    public void setProjetList(List<Projet> projetList) {
+        this.projetList = projetList;
     }
     
 

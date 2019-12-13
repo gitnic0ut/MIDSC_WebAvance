@@ -1,27 +1,33 @@
 package com.tp.projet.page;
 
-
 import com.tp.projet.utilisateur.*;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Data;
 
 
 /**
  * Projet
  */
 @Entity
+@Data
 public class Projet {
 
     private String name;
@@ -48,98 +54,50 @@ public class Projet {
         joinColumns = @JoinColumn(name = "project_id"), 
         inverseJoinColumns = @JoinColumn(name = "user_id", nullable = true)
     )
-    private List<Users> utilisateurList;
+    private List<Users> userList;
 
     /**
      *  Table de liaison avec des taches 
      *    1 seul projet peut comporter de 0 à x taches
      * */
-    /*
-    @ManyToMany
-    @JoinTable(
-        name = "tache_has", 
-        joinColumns = @JoinColumn(name = "project_id"), 
-        inverseJoinColumns = @JoinColumn(name = "tache_id", nullable = true)
-    )
+
+    @OneToMany(mappedBy="projet")
     private List<Tache> tacheList;
-*/
+
     
     /* Constructeurs */
 
     public Projet() {
     }
 
-    public Projet(String name, int nbMember, Date dateCreation, Date dateDue, List<Users> utilisateurList,
+    public Projet(long id) {
+        this.id = id;
+    }
+
+    public Projet(List<Users> userList) {
+        this.userList = userList;
+    }
+
+
+
+    public Projet(String name, int nbMember, Date dateCreation, Date dateDue, List<Users> userList,
             List<Tache> tacheList, long id) {
         this.name = name;
         this.nbMember = nbMember;
         this.dateCreation = dateCreation;
         this.dateDue = dateDue;
-        this.utilisateurList = utilisateurList;
-        //this.tacheList = tacheList;
+        this.userList = userList;
+        this.tacheList = tacheList;
         this.id = id;
+    }
+
+    public Projet(long id, List<Users> userList) {
+        this.id = id;
+        this.userList = userList;
     }
 
 
     /* Getters & Setters */
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getNbMember() {
-        return nbMember;
-    }
-
-    public void setNbMember(int nbMember) {
-        this.nbMember = nbMember;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Date getDateDue() {
-        return dateDue;
-    }
-
-    public void setDateDue(Date dateDue) {
-        this.dateDue = dateDue;
-    }
-
-    public List<Users> getUtilisateurList() {
-        return utilisateurList;
-    }
-
-    public void setUtilisateurList(List<Users> utilisateurList) {
-        this.utilisateurList = utilisateurList;
-    }
-
-    /*
-    public List<Tache> getTacheList() {
-        return tacheList;
-    }
-
-    
-    public void setTacheList(List<Tache> tacheList) {
-        this.tacheList = tacheList;
-    }
-    */
 
 }

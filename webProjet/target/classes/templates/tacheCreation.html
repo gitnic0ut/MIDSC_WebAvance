@@ -13,12 +13,6 @@
                 <div class="col" layout:fragment="content">
                     <h1>Page de Création d'une tache</h1>
 
-                    <div>
-                        <h1>Après la connexion</h1>
-                    </div>
-
-                    <a th:href="@{../home}">Retour vers l'index</a> <br><br>
-                    <a th:href="@{../member}">Vers la page de membre</a>
 
                     <div>
                         <h1>Créez votre tache</h1>
@@ -26,24 +20,26 @@
                     </div>
 
                     <div th:each="v : ${member}">
-                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.pseudo}" th:attr="style='background: yellow'"></span>
+                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: yellow'"></span>
                     </div>
 
                     <br>    
 
-                    <form th:action="@{/addtache}" method="post" th:object="${tas}">
-                        Nom du projet
-                        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
-                        Nombre d'heures prévues pour cette tache
-                        <input type="number" th:field="*{hour}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
-                        Pourcentage de complétion
-                        <input type="number" th:field="*{completion}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
-                        Projet affilié
-                        <input type="text" th:field="*{projetList[0].id}" th:attr="placeholder='Id du projet'"/>
+                    <form th:action="@{/addtache}" method="post" th:object="${tas}" >
                         
-                        Date de cloture du projet
-                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
-                        <input type="submit" value="Valider">
+                        <div class="form-group row">
+                            <b class="col-4 col-form-label">Nom du projet : </b>
+                            <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
+                        </div>
+                        <div class="form-group row">
+                                <b class="col-4 col-form-label">Nombre d'heures prévues pour cette tache : </b>
+                                <input type="number" th:field="*{hour}" th:attr="placeholder='estimer le temps de travail (en heure)' "/>
+                        </div>
+                        <div class="form-group row">
+                            <b class="col-4 col-form-label">Date de cloture du projet : </b>
+                            <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
+                        </div>                        
+                        <input class="btn btn-primary" type="submit" value="Valider">
                     </form>
 
                 </div>
@@ -51,4 +47,6 @@
         </div> 
 
     </body>
+
+    
 </html>

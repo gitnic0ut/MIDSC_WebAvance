@@ -8,59 +8,74 @@
         test
         <div class="container">
             <div class="row">
-                
+
                 <div class="col" layout:fragment="content">
-
-                    <div>
-                        <h1>Gerez votre projet en cours</h1>
-                        
-                    </div>
-
-                    <h2>Membres inscrits sur l'application</h2>
-                    <div th:each="v : ${member}">
-                        <span th:text="'Id: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
-                    </div>
-
-                    <h2>Responsable actuel du projet</h2>
-                    <div th:each="v : ${pro.utilisateurList}">
-                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: green'"></span>
-                    </div>
-
-                    <h2>Taches du projet</h2>
-                    <div th:each="v : ${task}">
-                        <span th:text="'Identifiant: '+ ${v.id} + '  - Tache: '+ ${v.name}" th:attr="style='background: orange'"></span>
-                    </div>
                     
-                    <h2>Projet en cours</h2>
-                
-                        <span th:text="'Id: '+ ${pro.id} 
-                        + '  - Projet: '+ ${pro.name} 
-                        + '  - NbCollaborateurs: '+ ${pro.nbMember} 
-                        + '  - Date de création: '+ ${pro.dateCreation} 
-                        + '  - Date de fin: '+ ${pro.dateDue} "
-                        th:attr="style='background: white'"></span>
+                    <div>
+                        <h1>Page de gestion du projet <span th:text="${pro.name}"></span></h1>                       
+                    </div>
+
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            <h2>Détail du projet en cours</h2>             
+                            <span th:text="'Id: '+ ${pro.id} 
+                            + '  - Projet: '+ ${pro.name} 
+                            + '  - NbCollaborateurs: '+ ${pro.nbMember} 
+                            + '  - Date de création: '+ ${pro.dateCreation} 
+                            + '  - Date de fin: '+ ${pro.dateDue} "
+                            th:attr="style='background: white'"></span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <h2>Membres inscrits sur l'application</h2>
+                            <div th:each="v : ${member}">
+                                <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudo: '+ ${v.userName} + '  - Email: '+ ${v.email}" th:attr="style='background: yellow'"></span>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <h2>Responsable actuel du projet</h2>
+                            <div th:each="v : ${pro.userList}">
+                                <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: green'"></span>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <div class="p-3 mb-2 bg-light text-dark">
+                                <h2>Modifier le projet</h2>                          
+                                <form th:action="@{|/updateprojet/${pro.id}|}" th:method="post" th:object="${pro}">
+
+                                    <div class="form-group row">
+                                            <b class="col-4 col-form-label">Nouveau nom du projet : </b>
+                                            <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <b class="col-4 col-form-label">Nouvelle date de cloture du projet : </b>
+                                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
+                                    </div>  
+                                      
+                                    <input type="hidden" th:field="*{userList[0].id}" th:attr="placeholder='Id du membre responsable'"/>                     
+                                    <input class="btn btn-primary" type="submit" value="Valider">
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <h2>Taches associées au projet</h2>
+                            <div th:each="v : ${task}">
+                                <span   th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.name}" th:attr="style='background: aqua'"></span>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <h2><a th:href=" @{|/taskCreate/${pro.id}|} " th:attr="style='color:black'">Ajouter une nouvelle tache au projet</a></h2>
+                        </li>
+
+                    </ul>
 
                     <br>
-
-                    <div>
-                        <h1>Projet à modifier</h1>
-                    </div>
-
-                    <h2><a th:href=" @{|/taskCreate/${pro.id}|} " th:attr="style='color:black'">Nouvelle tache à ajouter au projet</a></h2>
-
-                    <form th:action="@{/updateprojet}" th:method="post" th:object="${pro}">
-                        Id du projet à modifier
-                        <input type="text" th:field="*{id}" th:attr="placeholder='Id du projet'"/>
-                        Nouveau nom du projet
-                        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>    
-                        <div>Nouveau membre responsable</div>
-                        <input type="text" th:field="*{utilisateurList[0]}" th:attr="placeholder='Id du nouveau membre responsable (doit être inscrit)' "/>
-                        Nombre de membres prévus
-                        <input type="text" th:field="*{nbMember}" th:attr="placeholder='nombre de membres prévus' "/>
-                        Nouvelle date de cloture du projet
-                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
-                        <input type="submit" value="Valider">
-                    </form>
 
                 </div>
             </div>

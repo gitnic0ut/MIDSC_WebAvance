@@ -1,5 +1,8 @@
 package com.tp.projet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import com.tp.projet.page.*;
@@ -84,7 +87,7 @@ public class FirstController {
     }
 
     @RequestMapping("/addutilisateur")
-    public String addutilisateur(Users u) {
+    public String addutilisateur(Users u){
         u.setPassword(encoder.encode(u.getPassword()));
         userRep.save(u);
         return "redirect:/member";
@@ -94,16 +97,23 @@ public class FirstController {
 
     /* page de l'espace membre */
     @RequestMapping("/member")
-    public String membre(Model m) {
+    public String membre(Model m, Authentication auth) {
+
+        Users u = userRep.findIdByUserName(auth.getName());
+
+        m.addAttribute("u", u);
         m.addAttribute("member", userRep.findAll());
         m.addAttribute("project", projetRep.findAll());
+
         return "membre";
     }
+
 
     /* page de création d'un projet */
 
     @RequestMapping("/projetCreate")
     public String projetCreation(Model m) {
+        
         m.addAttribute("member", userRep.findAll());
         m.addAttribute("pro", new Projet());
 
@@ -111,7 +121,13 @@ public class FirstController {
     }
 
     @RequestMapping("/addprojet")
-    public String addprojet(Projet p) {
+    public String addprojet(Projet p, Authentication auth) {
+
+        Users u = userRep.findIdByUserName(auth.getName());
+        List<Users> userList = new ArrayList<>();
+        userList.add(u);
+        p.setUserList(userList);
+
         projetRep.save(p);
         return "redirect:/member";
     }
@@ -129,29 +145,25 @@ public class FirstController {
         return "projetGestion";
     }
 
-    @PostMapping(value = "/updateprojet")
-    public String updateprojet(Projet projetObj) {
+    @PostMapping(value = "/updateprojet/{projectId}")
+    public String updateprojet(@PathVariable("projectId") Long projectId, Projet projetObj) {
+ 
+        /* update de force */
+        projetObj.setId(projectId);
         projetRep.save(projetObj);
         return "redirect:/member";
     }
 
     /* page de création d'une tache */
-
     @RequestMapping("/taskCreate/{projectId}")
     public String tacheCreation(@PathVariable("projectId") Long projectId, Model m) {
 
-        /*
-         * Projet p; p = projetRep.findById(projectId).get();
-         */
-        Tache t = new Tache();
-
-        /*
-         * Tache t ; t = new Tache("", 0, 0.0, "", projectId, new Date(), new Date(),
-         * List<Projet> projetList, List<Utilisateur> utilisateurList);
-         */
-
-        m.addAttribute("member", utilisateurRep.findAll());
         m.addAttribute("project", projetRep.findAll());
+        m.addAttribute("member", userRep.findAll());
+
+        Tache t = new Tache(new Projet(projectId));
+
+        m.addAttribute("projectId", projectId);
         m.addAttribute("tas", t);
 
         return "tacheCreation";
@@ -170,7 +182,7 @@ public class FirstController {
             Model m) {
         Tache t;
         t = tacheRep.findById(taskId).get();
-        m.addAttribute("member", utilisateurRep.findAll());
+        //m.addAttribute("member", utilisateurRep.findAll());
         m.addAttribute("project", projetRep.findAll());
         m.addAttribute("task", projetRep.findAll());
         m.addAttribute("tas", t);

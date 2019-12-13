@@ -24,6 +24,19 @@
                   <li class="nav-item" sec:authorize="hasRole('USER')">
                     <a class="nav-link" th:href="@{/member}">Member's space</a>
                   </li>
+
+                  <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:href="@{/schedule}">Planning</a>
+                  </li>
+                  <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:href="@{/messaging}">Messagerie</a>
+                  </li>
+                  <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:href="@{/repertory}">Repository</a>
+                  </li>
+                  <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a class="nav-link" th:href="@{/toDoList}">ToDoList</a>
+
                   <li class="nav-item" sec:authorize="hasRole('USER')">
                     <a class="nav-link" th:href="@{/logout}">Deconnexion</a>
                   </li>
@@ -34,4 +47,5 @@
               </div>
             </div>
           </nav>
+          
 </header>

@@ -11,37 +11,60 @@
             <div class="row">
 
                 <div class="col" layout:fragment="content">
-                    <h1>Page de Création d'un projet</h1>
+
+                    
+
 
                     <div>
-                        <h1>Après la connexion</h1>
+                        <h1>Page de Création d'un projet</h1>                       
                     </div>
 
-                    <a th:href="@{home}">Retour vers l'index</a> <br><br>
-                    <a th:href="@{member}">Vers la page de membre</a>
+                    <ul class="list-group">
 
-                    <div>
-                        <h1>Créez votre projet</h1>
-                        <p>Membres inscrits sur l'application</p>
-                    </div>
 
-                    <div th:each="v : ${member}">
-                        <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: yellow'"></span>
-                    </div>
+                        <li class="list-group-item">
+                            <h2>Ensemble des membres inscrits</h2>
+                            <div th:each="v : ${member}">
+                                <span th:text="'Identifiant: '+ ${v.id} + '  - Pseudonyme: '+ ${v.userName}" th:attr="style='background: yellow'"></span>
+                            </div>
+                        </li>
 
-                    <br>    
+                        <li class="list-group-item">
 
-                    <form th:action="@{/addprojet}" method="post" th:object="${pro}">
-                        Nom du projet
-                        <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
-                        Nombre de membres prévus
-                        <input type="text" th:field="*{nbMember}" th:attr="placeholder='nombre de membres prévus' "/>
-                        Membre responsable
-                        <input type="text" th:field="*{utilisateurList[0].id}" th:attr="placeholder='Id du membre responsable'"/>
-                        Date de cloture du projet
-                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
-                        <input type="submit" value="Valider">
-                    </form>
+                            <div class="p-3 mb-2 bg-light text-dark">
+                                <h2>Créer un nouveau projet</h2>                          
+                                <form th:action="@{/addprojet}" method="post" th:object="${pro}">
+
+                                    <div class="form-group row">
+                                            <b class="col-4 col-form-label">Nom du projet : </b>
+                                            <input type="text" th:field="*{name}" th:attr="placeholder='nom'"/>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <b class="col-4 col-form-label">Nombre de membres prévus : </b>
+                                        <input type="text" th:field="*{nbMember}" th:attr="placeholder='nombre de membres prévus' "/>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <b class="col-4 col-form-label">Date de cloture du projet : </b>
+                                        <input type="datetime-local" th:field="*{dateDue}" th:attr="placeholder='Date de rendu' "/>
+                                    </div>  
+                  
+                                    <input class="btn btn-primary" type="submit" value="Valider">
+
+                                </form>
+                            </div>
+                        </li>
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
